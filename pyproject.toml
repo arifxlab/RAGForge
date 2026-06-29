@@ -1,0 +1,16 @@
+[project]
+name = "ragforge"
+version = "0.1.0"
+description = "A production-ready AI Knowledge Platform powered by Retrieval-Augmented Generation (RAG)."
+readme = "README.md"
+requires-python = ">=3.11"
+
+authors = [
+    { name = "Arif Khan" }
+]
+
+dependencies = [
+    "fastapi>=0.138.1",
+    "uvicorn>=0.49.0",
+    "pydantic-settings>=2.14.2",
+]
