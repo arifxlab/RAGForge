@@ -1,0 +1,44 @@
+services:
+
+  postgres:
+    image: postgres:17
+    container_name: ragforge-postgres
+
+    environment:
+      POSTGRES_DB: ragforge
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    restart: unless-stopped
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: ragforge-qdrant
+
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+    restart: unless-stopped
+
+  redis:
+    image: redis:8
+    container_name: ragforge-redis
+
+    ports:
+      - "6379:6379"
+
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  qdrant_data:
