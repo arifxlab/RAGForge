@@ -1,6 +1,12 @@
-def main():
-    print("Hello from ragforge!")
+from fastapi import FastAPI
 
+from app.api.v1 import api_router
+from app.core.config import settings
 
-if __name__ == "__main__":
-    main()
+app = FastAPI(
+    title=settings.APP_NAME,
+    version=settings.APP_VERSION,
+    description="Production-ready AI Knowledge Platform powered by Retrieval-Augmented Generation.",
+)
+
+app.include_router(api_router, prefix=settings.API_V1_PREFIX)
