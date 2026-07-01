@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 
+from app.api.v1 import api_router
 from app.core.config import settings
 
 app = FastAPI(
@@ -18,8 +19,7 @@ async def root():
     }
 
 
-@app.get("/health", tags=["Health"])
-async def health():
-    return {
-        "status": "healthy",
-    }
+app.include_router(
+    api_router,
+    prefix=settings.API_V1_PREFIX,
+)
